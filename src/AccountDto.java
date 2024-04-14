@@ -63,4 +63,7 @@ public class AccountDto {
         this.enterprise_type = cnType;
         this.t_limit = t_limit;
     }
+    public AccountDto(int account_id) {
+        this.phone = account_id;
+    }
 }
