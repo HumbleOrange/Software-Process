@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static com.baomidou.mybatisplus.core.toolkit.StringPool.NULL;
 
@@ -67,19 +68,19 @@ public class DisecategoryServiceImpl implements DisecategoryService {
         newPage = (Page<Disecategory>) disecategoryMapper.selectPage(newPage,queryWrapper);
         List<Disecategory> DisList = newPage.getRecords();
         long total = newPage.getTotal();
-        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> result = new ConcurrentHashMap<>();
 
         List<Map<String, Object>> resultList = new ArrayList<>();
 
         for(Disecategory disecategory: DisList){
-            Map<String,Object> map = new HashMap<>();
+            Map<String,Object> map = new ConcurrentHashMap<>();
             map.put("sequenceNo",disecategory.getSequenceNo());
             map.put("dicaCode",disecategory.getDicaCode());
             map.put("dicaName",disecategory.getDicaName());
             resultList.add(map);
         }
         result.put("status",200);
-        Map<String,Object> map1 = new HashMap<>();
+        Map<String,Object> map1 = new ConcurrentHashMap<>();
         map1.put("list",resultList);
         map1.put("total",total);
         result.put("data",map1);
